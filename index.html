@@ -25,29 +25,29 @@
 
       <button class="btn-add-book">Add a book</button>
 
-      <dialog open>
+      <dialog>
         <form action="#" method="get">
           <ul>
-            <li>
+            <li class="form-row">
               <label for="title">Title</label>
-              <input type="text" id="title" name="title" />
+              <input type="text" id="title" name="title" required />
             </li>
-            <li>
+            <li lass="form-row">
               <label for="author">Author</label>
-              <input type="text" id="author" name="author" />
+              <input type="text" id="author" name="author" required />
             </li>
-            <li>
+            <li lass="form-row">
               <label for="pages">Pages</label>
               <input type="number" id="pages" name="pages" min="0" />
             </li>
-            <li>
-              <label for="read">Read?</label>
+            <li lass="form-row">
+              <label for="read">Have read</label>
               <input type="checkbox" id="read" name="read" />
             </li>
           </ul>
 
           <div>
-            <button type="submit" id="btn-confirm" value="default">Confirm</button>
+            <button type="submit" id="btn-add-confirm" value="default">Add Book</button>
             <button class="btn-cancel" value="cancel" formmethod="dialog">Cancel</button>
           </div>
         </form>
