@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Mini Library</title>
   </head>
   <body>
     <div class="container">
@@ -25,9 +25,32 @@
 
       <button class="btn-add-book">Add a book</button>
 
-      <dialog>
-        <p>This modal dialog has a groovy backdrop!</p>
-        <button class="closeme" autofocus>Close</button>
+      <dialog open>
+        <form action="#" method="get">
+          <ul>
+            <li>
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" />
+            </li>
+            <li>
+              <label for="author">Author</label>
+              <input type="text" id="author" name="author" />
+            </li>
+            <li>
+              <label for="pages">Pages</label>
+              <input type="number" id="pages" name="pages" min="0" />
+            </li>
+            <li>
+              <label for="read">Read?</label>
+              <input type="checkbox" id="read" name="read" />
+            </li>
+          </ul>
+
+          <div>
+            <button type="submit" id="btn-confirm" value="default">Confirm</button>
+            <button class="btn-cancel" value="cancel" formmethod="dialog">Cancel</button>
+          </div>
+        </form>
       </dialog>
     </div>
   </body>
