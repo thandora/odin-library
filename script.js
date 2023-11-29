@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, node) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -44,7 +44,7 @@ function validateInputs(form) {
   });
 }
 
-function createBookElement(book) {
+function createBookNode(book) {
   const article = document.createElement("article");
   article.className = "book";
 
@@ -74,7 +74,16 @@ function createBookElement(book) {
   article.appendChild(author);
   article.appendChild(pages);
   article.appendChild(pageRead);
-  bookshelf.appendChild(article);
+
+  return article;
+}
+
+function addToShelf(bookNode) {
+  if (bookNode) {
+    bookshelf.appendChild(bookNode);
+    return 1;
+  }
+  return 0;
 }
 
 btnAddConfirm.addEventListener("click", () => {
@@ -86,11 +95,11 @@ btnAddConfirm.addEventListener("click", () => {
 
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    createBookElement(book);
+    addToShelf(createBookNode(book));
   }
 });
 
-bookForm.addEventListener("submit", function () {
+bookForm.addEventListener("submit", () => {
   bookForm.reset();
   formClose();
 });
