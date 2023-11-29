@@ -87,13 +87,12 @@ btnAddConfirm.addEventListener("click", () => {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
     createBookElement(book);
-    bookForm.reset();
-    formClose();
   }
 });
 
-bookForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+bookForm.addEventListener("submit", function () {
+  bookForm.reset();
+  formClose();
 });
 
 btnAdd.addEventListener("click", formOpen);
