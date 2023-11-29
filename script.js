@@ -60,6 +60,7 @@ function createBookNode(book) {
   const read = document.createElement("input");
   read.setAttribute("type", "checkbox");
   read.checked = book.read;
+  readStatusUpdater(read, book);
 
   const pageRead = document.createElement("p");
   pageRead.textContent = "Have Read: ";
@@ -72,6 +73,12 @@ function createBookNode(book) {
   article.appendChild(pageRead);
 
   return article;
+}
+
+function readStatusUpdater(checkbox, book) {
+  checkbox.addEventListener("change", () => {
+    book.read = checkbox.checked;
+  });
 }
 
 function addRemoveBookButton(bookNode, book) {
@@ -119,9 +126,9 @@ btnAddConfirm.addEventListener("click", () => {
     let read = bookForm.elements["read"].checked;
 
     const book = new Book(title, author, pages, read);
-    const bookNode = createBookNode(book);
-
     addBookToLibrary(book);
+
+    const bookNode = createBookNode(book);
     addRemoveBookButton(bookNode);
     addNodeToShelf(bookNode);
   }
