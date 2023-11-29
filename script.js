@@ -1,15 +1,19 @@
 const myLibrary = [];
+let booksAdded = myLibrary.length;
 
-function Book(title, author, pages, read, node) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
-}
 
-function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read);
-  myLibrary.push(book);
+  if (booksAdded === 0) {
+    index = 0;
+  } else {
+    index = myLibrary.at(-1).index + 1;
+  }
+
+  this.index = index;
 }
 
 const bookForm = document.querySelector("form");
@@ -78,12 +82,41 @@ function createBookNode(book) {
   return article;
 }
 
-function addToShelf(bookNode) {
+function addRemoveBookButton(bookNode, book) {
+  const btn = createRemoveButton("btn-remove-book");
+  bindDelete(btn, book, bookNode);
+  bookNode.appendChild(btn);
+}
+
+function createRemoveButton(className) {
+  const btn = document.createElement("button");
+  btn.textContent = "Remove Book";
+  btn.className = className;
+  return btn;
+}
+
+function bindDelete(button, book, bookNode) {
+  button.addEventListener("click", () => {
+    bookshelf.removeChild(bookNode);
+    const index = myLibrary.findIndex((b) => {
+      return b === book;
+    });
+
+    myLibrary.splice(index, 1);
+  });
+}
+
+function addNodeToShelf(bookNode) {
   if (bookNode) {
     bookshelf.appendChild(bookNode);
     return 1;
   }
   return 0;
+}
+
+function addBookToLibrary(book) {
+  myLibrary.push(book);
+  booksAdded++;
 }
 
 btnAddConfirm.addEventListener("click", () => {
@@ -94,8 +127,11 @@ btnAddConfirm.addEventListener("click", () => {
     let read = bookForm.elements["read"].checked;
 
     const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-    addToShelf(createBookNode(book));
+    const bookNode = createBookNode(book);
+
+    addBookToLibrary(book);
+    addRemoveBookButton(bookNode);
+    addNodeToShelf(bookNode);
   }
 });
 
