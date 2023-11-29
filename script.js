@@ -6,14 +6,6 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-
-  if (booksAdded === 0) {
-    index = 0;
-  } else {
-    index = myLibrary.at(-1).index + 1;
-  }
-
-  this.index = index;
 }
 
 const bookForm = document.querySelector("form");
